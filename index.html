@@ -3,151 +3,239 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ModaVitrine PRO</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<title>ModaVitrine</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
 
 body{
+background:#f8f9fc;
+color:#222;
+}
+
+/* HEADER SUPERIOR */
+header{
 display:flex;
-background:#f4f6fb;
+justify-content:space-between;
+align-items:center;
+padding:20px 60px;
+background:white;
+box-shadow:0 2px 15px rgba(0,0,0,0.05);
+position:sticky;
+top:0;
+z-index:100;
 }
 
-/* MENU LATERAL */
-.sidebar{
-width:220px;
-background:linear-gradient(180deg,#8e2de2,#ff6a88);
-color:white;
-height:100vh;
-padding:20px;
-position:fixed;
+.logo{
+font-size:22px;
+font-weight:700;
+background:linear-gradient(90deg,#8e2de2,#ff6a88);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
-.sidebar h2{
-margin-bottom:30px;
+nav{
+display:flex;
+gap:25px;
 }
 
-.sidebar a{
-display:block;
-margin-bottom:15px;
-cursor:pointer;
+nav a{
 text-decoration:none;
-color:white;
+color:#555;
 font-weight:500;
+cursor:pointer;
+transition:0.3s;
 }
 
-/* CONTEÚDO */
-.main{
-margin-left:220px;
-padding:30px;
-width:100%;
+nav a:hover{
+color:#8e2de2;
 }
 
-.section{display:none;}
-.active{display:block;}
+/* HERO */
+.hero{
+padding:50px 60px 30px 60px;
+}
 
-h1{margin-bottom:20px;}
+.hero h1{
+font-size:28px;
+margin-bottom:10px;
+}
+
+.hero p{
+color:#666;
+}
 
 /* BUSCA */
 .search{
-margin-bottom:20px;
+margin-top:20px;
 }
 
 .search input{
-padding:10px;
-width:250px;
-border-radius:20px;
-border:1px solid #ccc;
+width:320px;
+padding:10px 15px;
+border-radius:25px;
+border:1px solid #ddd;
+outline:none;
 }
 
 /* GRID */
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-gap:20px;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+padding:30px 60px;
 }
 
 .card{
 background:white;
-border-radius:15px;
+border-radius:18px;
 overflow:hidden;
-box-shadow:0 5px 15px rgba(0,0,0,0.08);
+box-shadow:0 8px 20px rgba(0,0,0,0.05);
 transition:0.3s;
 }
 
-.card:hover{transform:translateY(-5px);}
+.card:hover{
+transform:translateY(-6px);
+}
 
 .card img{
 width:100%;
-height:200px;
+height:220px;
 object-fit:cover;
 }
 
-.card-content{padding:15px;}
+.card-content{
+padding:18px;
+}
 
-.price{font-weight:600;margin:5px 0;}
+.card-content h3{
+font-size:18px;
+margin-bottom:5px;
+}
 
-.small{font-size:13px;color:#555;}
+.price{
+font-weight:600;
+margin:6px 0;
+}
+
+.size{
+font-size:13px;
+color:#777;
+margin-bottom:10px;
+}
 
 .actions{
 display:flex;
 justify-content:space-between;
-margin-top:10px;
 }
 
 .btn{
 border:none;
-padding:6px 10px;
-border-radius:20px;
+padding:7px 12px;
+border-radius:25px;
 cursor:pointer;
-font-size:12px;
+font-size:13px;
+transition:0.3s;
 }
 
-.fav{background:#ff4757;color:white;}
-.contact{background:#25D366;color:white;}
-.open-store{background:#8e2de2;color:white;}
+.fav{
+background:#ff4757;
+color:white;
+}
 
+.contact{
+background:#25D366;
+color:white;
+}
+
+.store-btn{
+background:#8e2de2;
+color:white;
+width:100%;
+margin-top:10px;
+}
+
+.section{
+display:none;
+}
+
+.active{
+display:block;
+}
+
+footer{
+text-align:center;
+padding:25px;
+margin-top:40px;
+background:#111;
+color:white;
+}
 </style>
 </head>
 
 <body>
 
-<div class="sidebar">
-<h2>👗 ModaVitrine</h2>
-<a onclick="showSection('home')">🏠 Início</a>
-<a onclick="showSection('stores')">🏬 Lojas</a>
-<a onclick="showSection('favorites')">❤️ Favoritos</a>
-</div>
-
-<div class="main">
+<header>
+<div class="logo">👗 ModaVitrine</div>
+<nav>
+<a onclick="showSection('home')">Início</a>
+<a onclick="showSection('stores')">Lojas</a>
+<a onclick="showSection('favorites')">Favoritos</a>
+</nav>
+</header>
 
 <!-- HOME -->
 <div id="home" class="section active">
+<div class="hero">
 <h1>Destaques da Cidade ✨</h1>
+<p>Descubra as melhores peças disponíveis nas lojas locais.</p>
+
+<div class="search">
+<input type="text" placeholder="Buscar peça ou loja...">
+</div>
+</div>
+
 <div class="grid" id="highlight"></div>
 </div>
 
 <!-- LOJAS -->
 <div id="stores" class="section">
-<h1>Lojas Disponíveis</h1>
+<div class="hero">
+<h1>Lojas Disponíveis 🏬</h1>
+<p>Clique na loja para ver todas as peças.</p>
+</div>
+
 <div class="grid" id="storeList"></div>
 </div>
 
 <!-- PERFIL LOJA -->
 <div id="storeProfile" class="section">
-<button class="btn open-store" onclick="showSection('stores')">← Voltar</button>
+<div class="hero">
 <h1 id="storeName"></h1>
+</div>
+
 <div class="grid" id="storeProducts"></div>
 </div>
 
 <!-- FAVORITOS -->
 <div id="favorites" class="section">
+<div class="hero">
 <h1>Peças Salvas ❤️</h1>
+</div>
+
 <div class="grid" id="favList"></div>
 </div>
 
-</div>
+<footer>
+© 2026 ModaVitrine - Desenvolvido por Hortência 💻✨
+</footer>
 
 <script>
 
@@ -169,33 +257,29 @@ products:[
 }
 ];
 
-const highlight = document.getElementById("highlight");
-const storeList = document.getElementById("storeList");
-const storeProducts = document.getElementById("storeProducts");
-const favList = document.getElementById("favList");
-
-/* SEÇÕES */
 function showSection(id){
 document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
 document.getElementById(id).classList.add('active');
-if(id==="favorites") loadFavorites();
+if(id==="favorites") loadFav();
 }
 
-/* HOME - DESTAQUES */
+/* DESTAQUES */
+const highlight=document.getElementById("highlight");
 data.forEach(store=>{
 store.products.forEach(prod=>{
 highlight.innerHTML+=card(prod,store);
 });
 });
 
-/* LISTA LOJAS */
+/* LOJAS */
+const storeList=document.getElementById("storeList");
 data.forEach((store,index)=>{
 storeList.innerHTML+=`
 <div class="card">
 <div class="card-content">
 <h3>${store.name}</h3>
-<p class="small">Clique para ver as peças disponíveis</p>
-<button class="btn open-store" onclick="openStore(${index})">Ver Loja</button>
+<p>Ver todas as peças disponíveis</p>
+<button class="btn store-btn" onclick="openStore(${index})">Abrir Loja</button>
 </div>
 </div>
 `;
@@ -205,13 +289,14 @@ storeList.innerHTML+=`
 function openStore(index){
 showSection("storeProfile");
 document.getElementById("storeName").innerText=data[index].name;
-storeProducts.innerHTML="";
+const container=document.getElementById("storeProducts");
+container.innerHTML="";
 data[index].products.forEach(prod=>{
-storeProducts.innerHTML+=card(prod,data[index]);
+container.innerHTML+=card(prod,data[index]);
 });
 }
 
-/* CARD PRODUTO */
+/* CARD */
 function card(prod,store){
 return `
 <div class="card">
@@ -219,7 +304,7 @@ return `
 <div class="card-content">
 <h3>${prod.name}</h3>
 <div class="price">${prod.price}</div>
-<div class="small">Tamanhos: ${prod.size}</div>
+<div class="size">Tamanhos: ${prod.size}</div>
 <div class="actions">
 <button class="btn fav" onclick='save(${JSON.stringify(prod)})'>❤️</button>
 <button class="btn contact" onclick="window.open('https://wa.me/${store.whatsapp}','_blank')">📲</button>
@@ -229,20 +314,20 @@ return `
 `;
 }
 
-/* SALVAR */
+/* FAVORITOS */
 function save(prod){
-let fav = JSON.parse(localStorage.getItem("fav"))||[];
+let fav=JSON.parse(localStorage.getItem("fav"))||[];
 fav.push(prod);
 localStorage.setItem("fav",JSON.stringify(fav));
 alert("Peça salva ❤️");
 }
 
-/* CARREGAR FAVORITOS */
-function loadFavorites(){
-let fav = JSON.parse(localStorage.getItem("fav"))||[];
-favList.innerHTML="";
+function loadFav(){
+let fav=JSON.parse(localStorage.getItem("fav"))||[];
+const container=document.getElementById("favList");
+container.innerHTML="";
 fav.forEach(prod=>{
-favList.innerHTML+=`
+container.innerHTML+=`
 <div class="card">
 <img src="${prod.img}">
 <div class="card-content">
