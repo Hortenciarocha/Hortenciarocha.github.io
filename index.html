@@ -1,347 +1,115 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ModaVitrine</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+hortenciarocha.github.io
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-background:#f8f9fc;
-color:#222;
+/* CORES BASEADAS NA IMAGEM */
+:root {
+    --bege-principal: #F4E1B2;
+    --marrom-profundo: #5A3A2E;
+    --vermelho-detalhe: #8B1E1E;
+    --branco: #ffffff;
+    --cinza-suave: #f5f5f5;
 }
 
-/* HEADER SUPERIOR */
-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 60px;
-background:white;
-box-shadow:0 2px 15px rgba(0,0,0,0.05);
-position:sticky;
-top:0;
-z-index:100;
+/* CORPO */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--cinza-suave);
+    color: var(--marrom-profundo);
 }
 
-.logo{
-font-size:22px;
-font-weight:700;
-background:linear-gradient(90deg,#8e2de2,#ff6a88);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
+/* HEADER */
+header {
+    background-color: var(--bege-principal);
+    padding: 20px;
+    text-align: center;
+    border-bottom: 4px solid var(--marrom-profundo);
 }
 
-nav{
-display:flex;
-gap:25px;
+header h1 {
+    font-size: 32px;
+    letter-spacing: 2px;
+    color: var(--marrom-profundo);
 }
 
-nav a{
-text-decoration:none;
-color:#555;
-font-weight:500;
-cursor:pointer;
-transition:0.3s;
+header p {
+    font-style: italic;
+    color: var(--vermelho-detalhe);
 }
 
-nav a:hover{
-color:#8e2de2;
+/* MENU */
+nav {
+    background-color: var(--marrom-profundo);
+    padding: 12px;
+    text-align: center;
 }
 
-/* HERO */
-.hero{
-padding:50px 60px 30px 60px;
+nav a {
+    color: var(--branco);
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
-.hero h1{
-font-size:28px;
-margin-bottom:10px;
+nav a:hover {
+    color: var(--bege-principal);
 }
 
-.hero p{
-color:#666;
+/* SEÇÕES */
+section {
+    padding: 50px 20px;
+    text-align: center;
 }
 
-/* BUSCA */
-.search{
-margin-top:20px;
+.section-destaque {
+    background-color: var(--bege-principal);
 }
 
-.search input{
-width:320px;
-padding:10px 15px;
-border-radius:25px;
-border:1px solid #ddd;
-outline:none;
+/* BOTÃO */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: var(--vermelho-detalhe);
+    color: var(--branco);
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
-/* GRID */
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:25px;
-padding:30px 60px;
+.btn:hover {
+    background-color: var(--marrom-profundo);
 }
 
-.card{
-background:white;
-border-radius:18px;
-overflow:hidden;
-box-shadow:0 8px 20px rgba(0,0,0,0.05);
-transition:0.3s;
+/* ESCALA */
+.tabela-escala {
+    max-width: 700px;
+    margin: 30px auto;
+    border-collapse: collapse;
+    width: 100%;
 }
 
-.card:hover{
-transform:translateY(-6px);
+.tabela-escala th,
+.tabela-escala td {
+    border: 1px solid var(--marrom-profundo);
+    padding: 12px;
 }
 
-.card img{
-width:100%;
-height:220px;
-object-fit:cover;
+.tabela-escala th {
+    background-color: var(--marrom-profundo);
+    color: var(--branco);
 }
 
-.card-content{
-padding:18px;
+/* RODAPÉ */
+footer {
+    background-color: var(--marrom-profundo);
+    color: var(--branco);
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
 }
-
-.card-content h3{
-font-size:18px;
-margin-bottom:5px;
-}
-
-.price{
-font-weight:600;
-margin:6px 0;
-}
-
-.size{
-font-size:13px;
-color:#777;
-margin-bottom:10px;
-}
-
-.actions{
-display:flex;
-justify-content:space-between;
-}
-
-.btn{
-border:none;
-padding:7px 12px;
-border-radius:25px;
-cursor:pointer;
-font-size:13px;
-transition:0.3s;
-}
-
-.fav{
-background:#ff4757;
-color:white;
-}
-
-.contact{
-background:#25D366;
-color:white;
-}
-
-.store-btn{
-background:#8e2de2;
-color:white;
-width:100%;
-margin-top:10px;
-}
-
-.section{
-display:none;
-}
-
-.active{
-display:block;
-}
-
-footer{
-text-align:center;
-padding:25px;
-margin-top:40px;
-background:#111;
-color:white;
-}
-</style>
-</head>
-
-<body>
-
-<header>
-<div class="logo">👗 ModaVitrine</div>
-<nav>
-<a onclick="showSection('home')">Início</a>
-<a onclick="showSection('stores')">Lojas</a>
-<a onclick="showSection('favorites')">Favoritos</a>
-</nav>
-</header>
-
-<!-- HOME -->
-<div id="home" class="section active">
-<div class="hero">
-<h1>Destaques da Cidade ✨</h1>
-<p>Descubra as melhores peças disponíveis nas lojas locais.</p>
-
-<div class="search">
-<input type="text" placeholder="Buscar peça ou loja...">
-</div>
-</div>
-
-<div class="grid" id="highlight"></div>
-</div>
-
-<!-- LOJAS -->
-<div id="stores" class="section">
-<div class="hero">
-<h1>Lojas Disponíveis 🏬</h1>
-<p>Clique na loja para ver todas as peças.</p>
-</div>
-
-<div class="grid" id="storeList"></div>
-</div>
-
-<!-- PERFIL LOJA -->
-<div id="storeProfile" class="section">
-<div class="hero">
-<h1 id="storeName"></h1>
-</div>
-
-<div class="grid" id="storeProducts"></div>
-</div>
-
-<!-- FAVORITOS -->
-<div id="favorites" class="section">
-<div class="hero">
-<h1>Peças Salvas ❤️</h1>
-</div>
-
-<div class="grid" id="favList"></div>
-</div>
-
-<footer>
-© 2026 ModaVitrine - Desenvolvido por Hortência 💻✨
-</footer>
-
-<script>
-
-const data = [
-{
-name:"Bella Moda",
-whatsapp:"5599999999999",
-products:[
-{ id:1, name:"Vestido Elegance", price:"R$159,90", size:"P, M, G", img:"https://images.unsplash.com/photo-1520975916090-3105956dac38"},
-{ id:2, name:"Blusa Charm", price:"R$89,90", size:"M, G", img:"https://images.unsplash.com/photo-1490481651871-ab68de25d43d"}
-]
-},
-{
-name:"Estilo Urbano",
-whatsapp:"5588888888888",
-products:[
-{ id:3, name:"Blazer Chic", price:"R$229,90", size:"M, G, GG", img:"https://images.unsplash.com/photo-1512436991641-6745cdb1723f"}
-]
-}
-];
-
-function showSection(id){
-document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-document.getElementById(id).classList.add('active');
-if(id==="favorites") loadFav();
-}
-
-/* DESTAQUES */
-const highlight=document.getElementById("highlight");
-data.forEach(store=>{
-store.products.forEach(prod=>{
-highlight.innerHTML+=card(prod,store);
-});
-});
-
-/* LOJAS */
-const storeList=document.getElementById("storeList");
-data.forEach((store,index)=>{
-storeList.innerHTML+=`
-<div class="card">
-<div class="card-content">
-<h3>${store.name}</h3>
-<p>Ver todas as peças disponíveis</p>
-<button class="btn store-btn" onclick="openStore(${index})">Abrir Loja</button>
-</div>
-</div>
-`;
-});
-
-/* ABRIR LOJA */
-function openStore(index){
-showSection("storeProfile");
-document.getElementById("storeName").innerText=data[index].name;
-const container=document.getElementById("storeProducts");
-container.innerHTML="";
-data[index].products.forEach(prod=>{
-container.innerHTML+=card(prod,data[index]);
-});
-}
-
-/* CARD */
-function card(prod,store){
-return `
-<div class="card">
-<img src="${prod.img}">
-<div class="card-content">
-<h3>${prod.name}</h3>
-<div class="price">${prod.price}</div>
-<div class="size">Tamanhos: ${prod.size}</div>
-<div class="actions">
-<button class="btn fav" onclick='save(${JSON.stringify(prod)})'>❤️</button>
-<button class="btn contact" onclick="window.open('https://wa.me/${store.whatsapp}','_blank')">📲</button>
-</div>
-</div>
-</div>
-`;
-}
-
-/* FAVORITOS */
-function save(prod){
-let fav=JSON.parse(localStorage.getItem("fav"))||[];
-fav.push(prod);
-localStorage.setItem("fav",JSON.stringify(fav));
-alert("Peça salva ❤️");
-}
-
-function loadFav(){
-let fav=JSON.parse(localStorage.getItem("fav"))||[];
-const container=document.getElementById("favList");
-container.innerHTML="";
-fav.forEach(prod=>{
-container.innerHTML+=`
-<div class="card">
-<img src="${prod.img}">
-<div class="card-content">
-<h3>${prod.name}</h3>
-<div class="price">${prod.price}</div>
-</div>
-</div>
-`;
-});
-}
-
-</script>
-
-</body>
-</html>
-
-
