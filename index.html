@@ -20,7 +20,7 @@ background:#f8f9fc;
 color:#222;
 }
 
-/* HEADER SUPERIOR */
+/* HEADER */
 header{
 display:flex;
 justify-content:space-between;
@@ -60,7 +60,7 @@ color:#8e2de2;
 
 /* HERO */
 .hero{
-padding:50px 60px 30px 60px;
+padding:50px 60px 20px 60px;
 }
 
 .hero h1{
@@ -72,7 +72,6 @@ margin-bottom:10px;
 color:#666;
 }
 
-/* BUSCA */
 .search{
 margin-top:20px;
 }
@@ -120,6 +119,12 @@ font-size:18px;
 margin-bottom:5px;
 }
 
+.store-name{
+font-size:13px;
+color:#777;
+margin-bottom:6px;
+}
+
 .price{
 font-weight:600;
 margin:6px 0;
@@ -158,7 +163,6 @@ color:white;
 .store-btn{
 background:#8e2de2;
 color:white;
-width:100%;
 margin-top:10px;
 }
 
@@ -195,13 +199,12 @@ color:white;
 <div id="home" class="section active">
 <div class="hero">
 <h1>Destaques da Cidade ✨</h1>
-<p>Descubra as melhores peças disponíveis nas lojas locais.</p>
+<p>A vitrine digital que conecta você às melhores lojas da cidade.</p>
 
 <div class="search">
 <input type="text" placeholder="Buscar peça ou loja...">
 </div>
 </div>
-
 <div class="grid" id="highlight"></div>
 </div>
 
@@ -211,7 +214,6 @@ color:white;
 <h1>Lojas Disponíveis 🏬</h1>
 <p>Clique na loja para ver todas as peças.</p>
 </div>
-
 <div class="grid" id="storeList"></div>
 </div>
 
@@ -219,8 +221,8 @@ color:white;
 <div id="storeProfile" class="section">
 <div class="hero">
 <h1 id="storeName"></h1>
+<button class="btn store-btn" onclick="showSection('stores')">← Voltar</button>
 </div>
-
 <div class="grid" id="storeProducts"></div>
 </div>
 
@@ -229,12 +231,11 @@ color:white;
 <div class="hero">
 <h1>Peças Salvas ❤️</h1>
 </div>
-
 <div class="grid" id="favList"></div>
 </div>
 
 <footer>
-© 2026 ModaVitrine - Desenvolvido por Hortência 💻✨
+© 2026 ConectaModa - Desenvolvido por Hortência 💻✨
 </footer>
 
 <script>
@@ -261,6 +262,25 @@ function showSection(id){
 document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
 document.getElementById(id).classList.add('active');
 if(id==="favorites") loadFav();
+}
+
+/* GERAR CARDS */
+function card(prod,store){
+return `
+<div class="card">
+<img src="${prod.img}">
+<div class="card-content">
+<h3>${prod.name}</h3>
+<p class="store-name">Loja: ${store.name}</p>
+<div class="price">${prod.price}</div>
+<div class="size">Tamanhos: ${prod.size}</div>
+<div class="actions">
+<button class="btn fav" onclick='save(${JSON.stringify(prod)})'>❤️</button>
+<button class="btn contact" onclick="window.open('https://wa.me/${store.whatsapp}','_blank')">📲</button>
+</div>
+</div>
+</div>
+`;
 }
 
 /* DESTAQUES */
@@ -296,52 +316,46 @@ container.innerHTML+=card(prod,data[index]);
 });
 }
 
-/* CARD */
-function card(prod,store){
-return `
-<div class="card">
-<img src="${prod.img}">
-<div class="card-content">
-<h3>${prod.name}</h3>
-<div class="price">${prod.price}</div>
-<div class="size">Tamanhos: ${prod.size}</div>
-<div class="actions">
-<button class="btn fav" onclick='save(${JSON.stringify(prod)})'>❤️</button>
-<button class="btn contact" onclick="window.open('https://wa.me/${store.whatsapp}','_blank')">📲</button>
-</div>
-</div>
-</div>
-`;
-}
-
 /* FAVORITOS */
 function save(prod){
 let fav=JSON.parse(localStorage.getItem("fav"))||[];
+
+if(!fav.find(p=>p.id===prod.id)){
 fav.push(prod);
 localStorage.setItem("fav",JSON.stringify(fav));
 alert("Peça salva ❤️");
+}else{
+alert("Essa peça já está nos favoritos 😉");
+}
 }
 
 function loadFav(){
 let fav=JSON.parse(localStorage.getItem("fav"))||[];
 const container=document.getElementById("favList");
 container.innerHTML="";
-fav.forEach(prod=>{
+
+fav.forEach((prod,index)=>{
 container.innerHTML+=`
 <div class="card">
 <img src="${prod.img}">
 <div class="card-content">
 <h3>${prod.name}</h3>
 <div class="price">${prod.price}</div>
+<button class="btn fav" onclick="removeFav(${index})">Remover</button>
 </div>
 </div>
 `;
 });
 }
 
+function removeFav(index){
+let fav=JSON.parse(localStorage.getItem("fav"))||[];
+fav.splice(index,1);
+localStorage.setItem("fav",JSON.stringify(fav));
+loadFav();
+}
+
 </script>
 
 </body>
 </html>
-
-
